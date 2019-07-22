@@ -10,6 +10,10 @@ class Timer extends Component {
     };
   }
 
+  componentDidUpdate() {
+    this.timer.current.style.color = 
+    "#" + Math.floor(Math.random() * 16777215).toString(16)
+  }
   //Your code here
 
   componentDidMount() {
@@ -23,6 +27,13 @@ class Timer extends Component {
     clearInterval(this.interval);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.time === nextState.time) {
+      return false
+    }
+      return true
+    }
+  
   render() {
     const { time, color, logText } = this.state;
     return (
